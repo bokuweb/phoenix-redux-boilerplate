@@ -11,15 +11,22 @@
 //
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
-import "../../../deps/phoenix_html/web/static/js/phoenix_html"
+import "../../../deps/phoenix_html/web/static/js/phoenix_html";
 
 // Import local files
 import React from 'react';
 import { render } from 'react-dom';
-
-// Local files can be imported directly using relative
-// paths "./socket" or full ones "web/static/js/socket".
+import { Provider } from 'react-redux';
+import configureStore from './stores/configure-store';
+import App from './containers/app';
 
 // import socket from "./socket"
 
-render(<h1>Hello, World!!</h1>, document.querySelector('#root'));
+const store = configureStore();
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.querySelector('#root')
+);
