@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import SideMenu from './side-menu';
+import Contents from './contents';
 
 export default class Blog extends Component {
   constructor(props) {
@@ -6,17 +8,17 @@ export default class Blog extends Component {
   }
 
   componentDidMount() {
-    this.props.actions.blog.fetchArticles();
+    this.props.actions.blog.fetch();
   }
 
   render() {
     return (
-      <div>
-        {
-          this.props.blog.posts.length !== 0
-            ? this.props.blog.posts[0].title
-            : 'loading'
-        }
+      <div className="blog">
+        <SideMenu />
+        <Contents
+          posts={this.props.blog.posts}
+          post={this.props.actions.blog.post}
+        />
       </div>
     );
   }
