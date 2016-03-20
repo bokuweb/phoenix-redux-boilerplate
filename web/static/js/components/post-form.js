@@ -1,10 +1,27 @@
 import React, { Component, PropTypes } from 'react';
 
 export default class PostForm extends Component {
-  handleSubmit(e) {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: '',
+      body: '',
+    }
+  }
+
+  onTitleChange(e) {
+    console.log(e.target.value)
+    this.setState({ title: e.target.value });
+  }
+
+  onBodyChange(e) {
+    this.setState({ body: e.target.value });
+  }
+
+  onSubmit(e) {
     e.preventDefault();
-    const title = this.refs.title.value.trim();
-    const body = this.refs.body.value.trim();
+    const title = this.state.title.trim();
+    const body = this.state.body.trim();
     if (!title || !body) return;
     this.props.post(JSON.stringify({ post: { title, body } }));
   }
@@ -12,11 +29,20 @@ export default class PostForm extends Component {
   render() {
     return (
       <div className="post-form">
-        <form className="post-form__form" onSubmit={this.handleSubmit.bind(this)}>
-          <input type="text" ref="title" placeholder="title" />
-          <textarea ref="body" placeholder="body" />
-          <input type="submit" value="Post" />
-        </form>
+          <input
+            type="text"
+            className="post-form__input"
+            onChange={this.onTitleChange.bind(this)}
+            ref="title"
+            placeholder="title"
+          />
+          <textarea
+            ref="body"
+            className="post-form__textarea"
+            onChange={this.onBodyChange.bind(this)}
+            placeholder="body"
+          />
+          <input type="submit" onClick={this.onSubmit.bind(this)} value="Post" />
       </div>
     );
   }
