@@ -13,8 +13,8 @@ export default class Blog extends Component {
     return (
       <h1>
         {
-          this.props.blog.articles.length !== 0
-            ? this.props.blog.articles.data[0].title
+          this.props.blog.posts.length !== 0
+            ? this.props.blog.posts[0].title
             : 'loading'
         }
       </h1>

@@ -1,13 +1,18 @@
-import { createAction } from 'redux-actions';
+import { CALL_API } from 'redux-api-middleware';
 
 export const fetchArticles = () => {
-  return dispatch => {
-    fetch('/api/posts')
-      .then(res => res.json())
-      .then(articles => {
-        const action = createAction('FETCH_ARTICLES');
-        dispatch(action({ articles }));
-      })
-      .catch(e => console.log('parsing failed', e));
-  };
-};
+  return {
+    [CALL_API]: {
+      endpoint: '/api/posts',
+      method: 'GET',
+      types: [
+        'REQUEST_FETCH_POSTS',
+        {
+          type: 'SUCCESS_FETCH_POSTS',
+          payload: (action, state, res) => res.json().then(payload => payload),
+        },
+        'FAILURE_FETCH_POSTS',
+      ],
+    }
+  }
+}
