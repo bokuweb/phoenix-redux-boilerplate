@@ -11,13 +11,13 @@ export default class Blog extends Component {
 
   render() {
     return (
-      <h1>
+      <div>
         {
           this.props.blog.posts.length !== 0
             ? this.props.blog.posts[0].title
             : 'loading'
         }
-      </h1>
+      </div>
     );
   }
 }

@@ -5,10 +5,10 @@
     "watch-assets": "watch-run -p 'web/static/assets/*' npm run build-assets",
     "build-js": "browserify -t babelify web/static/js/app.js | uglifyjs -mc > priv/static/js/app.js",
     "watch-js": "watchify -t babelify web/static/js/app.js -o priv/static/js/app.js -dv",
-    "build-css": "cat web/static/css/*.css > priv/static/css/app.css",
-    "watch-css": "catw web/static/css/*.css -o priv/static/css/app.css -v",
-    "build": "npm run build-assets && npm run build-js && npm run build-css",
-    "watch": "npm run watch-assets & npm run watch-js & npm run watch-css",
+    "watch-stylus": "stylus web/static/stylus/ --watch  --out  priv/static/css/",
+    "build-stylus": "stylus web/static/stylus/ --out priv/static/css/",
+    "build": "npm run build-assets && npm run build-js && npm run build-stylus",
+    "watch": "npm run watch-assets & npm run watch-js & npm run watch-stylus",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -26,7 +26,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
-    "catw": "^1.0.1",
+    "stylus": "^0.54.2",
     "uglify-js": "^2.6.2",
     "watch-run": "^1.2.4",
     "watchify": "^3.7.0"
