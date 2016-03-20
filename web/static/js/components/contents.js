@@ -16,7 +16,7 @@ export default class Contents extends Component {
   render() {
     return (
       <div className="contents">
-        <PostForm post={this.props.post} />
+        <PostForm addPost={this.props.post} />
         {
           this.props.posts.length !== 0
             ? this.renderPosts()

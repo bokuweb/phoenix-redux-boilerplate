@@ -1,6 +1,6 @@
 import { CALL_API } from 'redux-api-middleware';
 
-export const fetch = () => {
+export const fetchPosts = () => {
   return {
     [CALL_API]: {
       endpoint: '/api/posts',
@@ -17,18 +17,20 @@ export const fetch = () => {
   }
 }
 
-export const post = (payload) => {
-  console.log(payload)
+export const addPost = (payload) => {
   return {
     [CALL_API]: {
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       endpoint: '/api/posts',
       method: 'POST',
-      body: payload,
+      body: JSON.stringify(payload),
       types: [
-        'REQUEST_POST',
-        'SUCCESS_POST',
-        'FAILURE_POST',
+        'REQUEST_ADD_POST',
+        {
+          type: 'SUCCESS_ADD_POST',
+          payload: (action, state, res) => res.json().then(payload => payload),
+        },
+        'FAILURE_ADD_POST',
       ],
     }
   }

@@ -8,7 +8,7 @@ export default class Blog extends Component {
   }
 
   componentDidMount() {
-    this.props.actions.blog.fetch();
+    this.props.actions.blog.fetchPosts();
   }
 
   render() {
@@ -17,7 +17,7 @@ export default class Blog extends Component {
         <SideMenu />
         <Contents
           posts={this.props.blog.posts}
-          post={this.props.actions.blog.post}
+          post={this.props.actions.blog.addPost}
         />
       </div>
     );
