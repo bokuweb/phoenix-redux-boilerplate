@@ -13,7 +13,7 @@ config :logger, level: :info
 
 # Configure your database
 config :phoenix_redux_blog, PhoenixReduxBlog.Repo,
-adapter: Ecto.Adapters.Postgres,
-url: System.get_env("DATABASE_URL"),
-pool_size: 20
+  adapter: Ecto.Adapters.Postgres,
+  url: System.get_env("DATABASE_URL"),
+  pool_size: 20
 
